@@ -57,9 +57,9 @@ Description: Shortens a given URL.
 
 Request:
 
-```{
+```
   "url": "https://example.com"
-}```
+```
 
 Response:
 
