@@ -48,74 +48,103 @@ Run the unit tests:
 ```sh
 npm run test:unit
 ```
+
 ## API Endpoints
-1. Shorten a URL
 
-Endpoint: POST /shorten
-Description: Shortens a given URL.
+### 1. Shorten a URL
+**Endpoint:** `POST /shorten`  
+**Description:** Shortens a given URL.
 
-
-Request:
-
-```
+#### **Request:**
+```json
+{
   "url": "https://example.com"
+}
 ```
 
-Response:
-
-```{
+#### **Response:**
+```json
+{
   "originalUrl": "https://example.com",
   "shortUrl": "http://localhost:3000/abcd1234"
-}```
+}
+```
 
-Example:
-```curl -X POST http://localhost:3000/shorten -H "Content-Type: application/json" -d '{"url": "https://example.com"}'```
+#### **Example:**
+```sh
+curl -X POST http://localhost:3000/shorten \
+     -H "Content-Type: application/json" \
+     -d '{"url": "https://example.com"}'
+```
 
-Example:
+---
 
-2. Follow the Shortened URL
-Endpoint: GET /:shortKey
-Description: Redirects to the original URL.
+### 2. Follow the Shortened URL
+**Endpoint:** `GET /:shortKey`  
+**Description:** Redirects to the original URL.
 
-```curl -L http://localhost:3000/abcd1234```
+#### **Example:**
+```sh
+curl -L http://localhost:3000/abcd1234
+```
 
-3. Get Analytics Data
-Endpoint: GET /analytics/:shortKey
-Description: Retrieves analytics data for a specific short URL.
+---
 
-Example:
+### 3. Get Analytics Data
+**Endpoint:** `GET /analytics/:shortKey`  
+**Description:** Retrieves analytics data for a specific short URL.
 
-```curl -X GET http://localhost:3000/analytics/abcd1234```
+#### **Example:**
+```sh
+curl -X GET http://localhost:3000/analytics/abcd1234
+```
 
-4. Process HTML and Replace URLs
-Endpoint: POST /process/html
-Description: Processes HTML content and replaces URLs with shortened URLs.
+---
 
-Request:
-```{
+### 4. Process HTML and Replace URLs
+**Endpoint:** `POST /process/html`  
+**Description:** Processes HTML content and replaces URLs with shortened URLs.
+
+#### **Request:**
+```json
+{
   "html": "<html><body><a href=\"https://example.com/page1\">Link 1</a><a href=\"https://example.com/page2\">Link 2</a></body></html>"
-}```
+}
+```
 
-Response: Processed HTML with shortened URLs.
-```curl -X POST http://localhost:3000/process/html -H "Content-Type: application/json" -d '{"html": "<html><body><a href=\"https://example.com/page1\">Link 1</a><a href=\"https://example.com/page2\">Link 2</a></body></html>"}'```
-Example:
+#### **Response:** Processed HTML with shortened URLs.
 
-5. Process HTML Without Links
-Endpoint: POST /process/html
-Description: Processes HTML content without links.
+#### **Example:**
+```sh
+curl -X POST http://localhost:3000/process/html \
+     -H "Content-Type: application/json" \
+     -d '{"html": "<html><body><a href=\"https://example.com/page1\">Link 1</a><a href=\"https://example.com/page2\">Link 2</a></body></html>"}'
+```
 
-Request:
+---
 
-```{
+### 5. Process HTML Without Links
+**Endpoint:** `POST /process/html`  
+**Description:** Processes HTML content without links.
+
+#### **Request:**
+```json
+{
   "html": "<div>No links here</div>"
-}```
+}
+```
 
-Response: Processed HTML without changes.
-```curl -X POST http://localhost:3000/process/html -H "Content-Type: application/json" -d '{"html": "<div>No links here</div>"}'```
+#### **Response:** Processed HTML without changes.
 
-Example:
-```curl -X POST http://localhost:3000/process/html -H "Content-Type: application/json" -d '{"html": "<div>No links here</div>"}'```
+#### **Example:**
+```sh
+curl -X POST http://localhost:3000/process/html \
+     -H "Content-Type: application/json" \
+     -d '{"html": "<div>No links here</div>"}'
+```
 
-License
+---
+
+## License
 This project is licensed under the MIT License.
 
